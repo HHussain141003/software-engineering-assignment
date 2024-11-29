@@ -4,30 +4,30 @@ bp = Blueprint("pages", __name__)
 
 # Login page
 @bp.route("/")
-def home():
-    return "Hello, Home!"
+def login():
+    return "Login Page"
 
 # Home screen
 @bp.route("/home_screen")
-def about():
-    return
+def home_screen():
+    return "Home Screen"
 
 # Create new ticket screen
 @bp.route("/add_ticket")
-def about():
-    return
+def add_ticket():
+    return "Add Ticket Screen"
 
 # View existing tickets screen
 @bp.route("/view_tickets")
-def about():
-    return
+def view_tickets():
+    return "View Tickets Screen"
 
 # Admin screen
 @bp.route("/admin_screen")
-def about():
-    return
+def admin_screen():
+    return "Admin Screen"
 
 # Log out screen
 @bp.route("/logout")
-def about():
-    return
+def logout():
+    return "Logout Screen"
