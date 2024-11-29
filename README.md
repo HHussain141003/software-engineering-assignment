@@ -29,3 +29,9 @@ username: admin
 email: admin@example.com
 password: admin123
 ```
+
+# App Documentation:
+This app aims to simulate an IT Support app where a user can raise a ticked and an IT Support officer will aim to resolve them. There are 3 tables, User, Ticket, and Comment
+
+## Entity Relationship Diagram:
+![ERD](./documentation/erd.png)
