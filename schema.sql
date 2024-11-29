@@ -32,6 +32,39 @@ CREATE TABLE comments (
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
+-- Sample data for each table
+INSERT INTO users (username, email, password, role) VALUES
+('admin', 'admin@example.com', 'admin123', 'admin'),
+('user1', 'user1@example.com', 'password1', 'user'),
+('user2', 'user2@example.com', 'password2', 'user'),
+('user3', 'user3@example.com', 'password3', 'user'),
+('user4', 'user4@example.com', 'password4', 'user'),
+('user5', 'user5@example.com', 'password5', 'user'),
+('user6', 'user6@example.com', 'password6', 'user'),
+('user7', 'user7@example.com', 'password7', 'user'),
+('user8', 'user8@example.com', 'password8', 'user'),
+('user9', 'user9@example.com', 'password9', 'user');
 
-INSERT INTO users (username, email, password) VALUES ('admin', 'admin@example.com', 'admin123');
-INSERT INTO users (username, email, password) VALUES ('user1', 'user1@example.com', 'user123');
+INSERT INTO tickets (title, description, status, priority, user_id) VALUES
+('Login Issue', 'User cannot log in to their account.', 'Open', 'High', 2),
+('Broken Printer', 'The office printer is not working.', 'Open', 'Medium', 3),
+('Software Request', 'Request for Adobe Photoshop license.', 'Open', 'Low', 4),
+('System Crash', 'The computer crashed during work.', 'In Progress', 'High', 5),
+('Email Issue', 'Unable to send emails.', 'Resolved', 'High', 6),
+('Network Problem', 'Internet connection is unstable.', 'Open', 'Medium', 7),
+('Access Denied', 'Cannot access shared folder.', 'In Progress', 'Low', 8),
+('Update Error', 'System update failed to install.', 'Open', 'High', 9),
+('Slow Performance', 'Computer is running very slow.', 'Resolved', 'Medium', 10),
+('Hardware Issue', 'Mouse is not functioning properly.', 'Open', 'Low', 2);
+
+INSERT INTO comments (ticket_id, user_id, comment) VALUES
+(1, 3, 'Have you tried resetting your password?'),
+(1, 2, 'Yes, but the problem persists.'),
+(2, 5, 'Contacted the printer vendor for support.'),
+(3, 4, 'License request submitted to the IT department.'),
+(4, 6, 'The crash logs have been reviewed, reinstalling drivers.'),
+(5, 7, 'Issue resolved after email settings were corrected.'),
+(6, 8, 'Network cables checked, awaiting ISP response.'),
+(7, 9, 'Permission issue identified, working on resolution.'),
+(8, 10, 'Retrying the update with the correct installer.'),
+(9, 2, 'Cleared cache and ran diagnostics, system improved.');
