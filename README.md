@@ -1,8 +1,11 @@
-# Software Engineering & Agile Fundamentals
+# Table of Contents
+- [Setting up the Application](#setting-up-the-application)
+- [App Use](#app-use)
+    - [Log-in](#log-in)
 
 This repository contains the code for Activity 1 of the assignment. Please follow the instructions below to set up and execute the application:
 
-# Pre-requisites
+# Setting up the Application
 
 - Create a virtual environment: `python -m venv venv`
 
