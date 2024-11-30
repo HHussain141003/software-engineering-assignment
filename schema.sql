@@ -34,16 +34,16 @@ CREATE TABLE comments (
 
 -- Sample data for each table
 INSERT INTO users (username, email, password, role) VALUES
-('admin', 'admin@example.com', 'admin123', 'admin'),
-('user1', 'user1@example.com', 'password1', 'user'),
-('user2', 'user2@example.com', 'password2', 'user'),
-('user3', 'user3@example.com', 'password3', 'user'),
-('user4', 'user4@example.com', 'password4', 'user'),
-('user5', 'user5@example.com', 'password5', 'user'),
-('user6', 'user6@example.com', 'password6', 'user'),
-('user7', 'user7@example.com', 'password7', 'user'),
-('user8', 'user8@example.com', 'password8', 'user'),
-('user9', 'user9@example.com', 'password9', 'user');
+('admin', 'admin@example.com', '', 'admin'),
+('user1', 'user1@example.com', '', 'user'),
+('user2', 'user2@example.com', '', 'user'),
+('user3', 'user3@example.com', '', 'user'),
+('user4', 'user4@example.com', '', 'user'),
+('user5', 'user5@example.com', '', 'user'),
+('user6', 'user6@example.com', '', 'user'),
+('user7', 'user7@example.com', '', 'user'),
+('user8', 'user8@example.com', '', 'user'),
+('user9', 'user9@example.com', '', 'user');
 
 INSERT INTO tickets (title, description, status, priority, user_id) VALUES
 ('Login Issue', 'User cannot log in to their account.', 'Open', 'High', 2),
