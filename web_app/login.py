@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from . import get_db
+from .database import get_db
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -17,7 +17,7 @@ def login():
     # Check username and password
     user = db.execute("SELECT * FROM users WHERE username = ?", (username)).fetchone()
     if user is None:
-        flash("Invalid userrname or password, please try again.")
+        flash("Invalid username or password, please try again.")
         return render_template("login.html")
         
 

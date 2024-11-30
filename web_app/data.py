@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash
-from . import get_db
+from .database import get_db
 
 def generate_user_data():
     db = get_db()
@@ -19,4 +19,5 @@ def generate_user_data():
     for username, email, password, role in users:
         hashed_password = generate_password_hash(password)
         db.execute("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)", (username, email, hashed_password, role))
-        db.commit
+    
+    db.commit()

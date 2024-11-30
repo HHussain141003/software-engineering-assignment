@@ -1,17 +1,12 @@
 from flask import Flask
-import sqlite3
 import os
 import logging
 from .pages import bp
 from .login import login_bp
+from .database import get_db
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-def get_db():
-    conn = sqlite3.connect("database.db")
-    conn.row_factory = sqlite3.Row 
-    return conn
 
 def initialize_app():
 
@@ -45,6 +40,5 @@ def initialize_app():
 
     app.register_blueprint(bp)
     app.register_blueprint(login_bp)
-
 
     return app
