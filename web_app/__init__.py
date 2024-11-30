@@ -1,8 +1,9 @@
 from flask import Flask
-from .pages import bp
 import sqlite3
 import os
 import logging
+from .pages import bp
+from .login import login_bp
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -41,5 +42,9 @@ def initialize_app():
             logger.info("Database found")
 
     initialize_database()
+
     app.register_blueprint(bp)
+    app.register_blueprint(login_bp)
+
+
     return app
