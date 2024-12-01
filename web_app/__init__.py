@@ -5,6 +5,8 @@ from .pages import bp
 from .login import login_bp
 from .database import get_db
 
+secret_key = os.getenv("SECRET_KEY")
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
