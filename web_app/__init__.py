@@ -4,6 +4,7 @@ import logging
 from .pages import bp
 from .login import login_bp
 from .database import get_db
+from .data import generate_user_data
 from dotenv import load_dotenv
 
 load_dotenv
@@ -42,6 +43,7 @@ def initialize_app():
             logger.info("Database found")
 
     initialize_database()
+    generate_user_data()
     app.secret_key = secret_key
     app.register_blueprint(bp)
     app.register_blueprint(login_bp)

@@ -3,6 +3,12 @@ from .database import get_db
 
 def generate_user_data():
     db = get_db()
+
+    existing_users = db.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+    if existing_users > 0:
+        print("Sample data already exists.")
+        return
+
     users = [
         ('admin', 'admin@example.com', 'admin123', 'admin'),
         ('user1', 'user1@example.com', 'user1', 'user'),

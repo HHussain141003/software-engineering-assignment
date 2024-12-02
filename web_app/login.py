@@ -28,4 +28,4 @@ def login():
     session["user_id"] = user["id"]
     session["role"] = user["role"]
     flash("Successfully logged in")
-    return redirect(url_for(home_screen))
+    return redirect(url_for("pages.home_screen"))
