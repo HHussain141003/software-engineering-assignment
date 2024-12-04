@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from .database import get_db
 import logging
 from werkzeug.security import check_password_hash
-from .pages import home_screen
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
