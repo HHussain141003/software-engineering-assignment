@@ -7,9 +7,21 @@
   </head>
   <body>
     <h1>Home Page</h1>
-    <button>Create a New Ticket</button>
-    <button>View existing Tickets</button>
-    <button>Admin - View All Tickets</button>
-    <button>Log Out</button>
+    <form action="{{ url_for('pages.add_ticket') }}" method="get">
+      <button type="submit">Create a New Ticket</button>
+    </form>
+    <form action="{{ url_for('pages.view_tickets') }}" method="get">
+      <button type="submit">View Existing Tickets</button>
+    </form>
+
+    {% if session['role'] == 'admin' %}
+    <form action="{{ url_for('pages.admin_screen') }}" method="get">
+      <button type="submit">Admin - View All Tickets</button>
+    </form>
+    {% endif %}
+
+    <form action="{{ url_for('login.logout') }}" method="post">
+      <button type="submit">Log Out</button>
+    </form>
   </body>
 </html>

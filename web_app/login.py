@@ -28,3 +28,9 @@ def login():
     session["role"] = user["role"]
     flash("Successfully logged in")
     return redirect(url_for("pages.home_screen"))
+
+@login_bp.route('/logout', methods=['POST'])
+def logout():
+    session.clear()
+    flash("You have been logged out")
+    return redirect(url_for('pages.login'))
