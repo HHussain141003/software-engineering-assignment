@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from .database import get_db
 import logging
 from werkzeug.security import check_password_hash
-from .pages import home_screen
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -29,3 +28,9 @@ def login():
     session["role"] = user["role"]
     flash("Successfully logged in")
     return redirect(url_for("pages.home_screen"))
+
+@login_bp.route('/logout', methods=['POST'])
+def logout():
+    session.clear()
+    flash("You have been logged out")
+    return redirect(url_for('pages.login'))
