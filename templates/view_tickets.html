@@ -17,18 +17,17 @@
           <th>Status</th>
           <th>Priority</th>
           <th>Created At</th>
-          <th>Comments</th>
         </tr>
       </thead>
       <tbody>
         {% for ticket in tickets %}
         <tr>
-          <td>{{ ticket['id'] }}</td>
-          <td>{{ ticket['title'] }}</td>
-          <td>{{ ticket['description'] }}</td>
-          <td>{{ ticket['status'] }}</td>
-          <td>{{ ticket['priority'] }}</td>
-          <td>{{ ticket['created_at'] }}</td>
+          <td>{{ ticket.id }}</td>
+          <td>{{ ticket.title }}</td>
+          <td>{{ ticket.description }}</td>
+          <td>{{ ticket.status }}</td>
+          <td>{{ ticket.priority }}</td>
+          <td>{{ ticket.created_at }}</td>
         </tr>
         {% endfor %}
       </tbody>

@@ -10,10 +10,6 @@ def home_screen():
 def create_ticket():
     return render_template('add_ticket.html')
 
-@home_bp.route('/view_tickets', methods=['GET'])
-def view_tickets():
-    return render_template('view_tickets.html')
-
 @home_bp.route('/admin_screen', methods=['GET'])
 def admin_screen():
     if session.get('role') == 'admin':
