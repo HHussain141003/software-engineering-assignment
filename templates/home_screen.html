@@ -7,15 +7,15 @@
   </head>
   <body>
     <h1>Home Page</h1>
-    <form action="{{ url_for('pages.add_ticket') }}" method="get">
+    <form action="{{ url_for('home.create_ticket') }}" method="get">
       <button type="submit">Create a New Ticket</button>
     </form>
-    <form action="{{ url_for('pages.view_tickets') }}" method="get">
-      <button type="submit">View Existing Tickets</button>
+    <form action="{{ url_for('view_tickets.view_tickets') }}" method="get">
+      <button type="submit">View Tickets</button>
     </form>
 
     {% if session['role'] == 'admin' %}
-    <form action="{{ url_for('pages.admin_screen') }}" method="get">
+    <form action="{{ url_for('home.admin_screen') }}" method="get">
       <button type="submit">Admin - View All Tickets</button>
     </form>
     {% endif %}
