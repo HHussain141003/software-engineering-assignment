@@ -6,6 +6,7 @@ from .home import home_bp
 from .database import get_db
 from .data import generate_user_data
 from .view_tickets import view_tickets_bp
+from .create_ticket import create_ticket_bp
 from dotenv import load_dotenv
 
 load_dotenv
@@ -49,5 +50,6 @@ def initialize_app():
     app.register_blueprint(login_bp)
     app.register_blueprint(home_bp)
     app.register_blueprint(view_tickets_bp)
+    app.register_blueprint(create_ticket_bp)
 
     return app

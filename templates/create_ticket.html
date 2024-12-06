@@ -3,7 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Ticket</title>
+    <title>Individual Ticket</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Ticket</h1>
+
+    {% with messages = get_flashed_messages(with_categories=True) %} {% if
+    messages %}
+    <div class="message">
+      <ul>
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %} {% endwith %}
+
+    <form method="POST" action="/create_ticket">
+      <table>
+        <tr>
+          <td><label for="title">Title:</label></td>
+          <td><input type="text" id="title" name="title" required /></td>
+        </tr>
+        <tr>
+          <td><label for="description">Description:</label></td>
+          <td>
+            <textarea
+              id="description"
+              name="description"
+              rows="5"
+              required
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="priority">Priority:</label></td>
+          <td>
+            <select id="priority" name="priority" required>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="status">Status:</label></td>
+          <td>
+            <select id="status" name="status" required readonly>
+              <option value="Created" selected>Created</option>
+              <option value="In Progress">In Progress</option>
+              <option value="On Hold">On Hold</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Solved">Solved</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="created_at">Created At:</label></td>
+          <td>
+            <input
+              type="text"
+              id="created_at"
+              name="created_at"
+              value="{% if created_at %}{{ created_at }}{% endif %}"
+              readonly
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="updated_at">Updated At:</label></td>
+          <td>
+            <input
+              type="text"
+              id="updated_at"
+              name="updated_at"
+              value="{% if updated_at %}{{ updated_at }}{% endif %}"
+              readonly
+            />
+          </td>
+        </tr>
+      </table>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
 </html>
