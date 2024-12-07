@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, url_for, flash, request
+from flask import Blueprint, render_template, session, redirect, url_for, flash, request, get_flashed_messages
 from datetime import datetime
 from .database import get_db
 
@@ -24,15 +24,21 @@ def create_ticket():
 
         db.commit()
 
-        flash('Ticket created successfully!', 'success')
-        return render_template(
-            'create_ticket.html',
-            created_at=created_at,
-            updated_at=updated_at,
-            title=title,
-            description=description,
-            priority=priority,
-            status=status
-        )
+        ticket_id = db.execute('SELECT last_insert_rowid()').fetchone()[0]
 
-    return render_template('create_ticket.html')
+        flash('Ticket created successfully!', 'create_ticket_message')
+        return redirect(url_for('create_ticket.view_ticket', ticket_id=ticket_id))
+
+    return render_template('create_ticket.html', ticket="", description="", priority="Low", status="Created", created_at="", updated_at="")
+
+@create_ticket_bp.route("/view_tickets/<int:ticket_id>")
+def view_ticket(ticket_id):
+    db = get_db()
+
+    ticket = db.execute('SELECT * FROM tickets WHERE id = ?', (ticket_id,)).fetchone()
+
+    if not ticket:
+        flash('Ticket not found!', 'danger')
+        return redirect(url_for('create_ticket.create_ticket'))
+    
+    return render_template("view_ticket.html", ticket=ticket)
