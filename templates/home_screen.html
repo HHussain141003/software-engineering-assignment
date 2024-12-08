@@ -20,8 +20,9 @@
     </form>
     {% endif %}
 
-    <form action="{{ url_for('login.logout') }}" method="post">
-      <button type="submit">Log Out</button>
+    <form id="logout-form" action="{{ url_for('login.logout') }}" method="POST">
+      <button type="submit" class="btn btn-danger">Logout</button>
     </form>
+    <script src="{{ url_for('static', filename='js/log_out.js') }}"></script>
   </body>
 </html>

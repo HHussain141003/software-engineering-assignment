@@ -22,7 +22,7 @@ def initialize_app():
         os.path.join(os.path.dirname(__file__), "..", "templates")
     )
 
-    app = Flask(__name__, template_folder=template_folder_path)
+    app = Flask(__name__, template_folder=template_folder_path, static_folder="static")
 
     @app.before_request
     def initialize_database():
