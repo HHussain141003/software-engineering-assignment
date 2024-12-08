@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, session, flash, redirect, url_for
 import os
 import logging
 from .login import login_bp
@@ -8,6 +8,8 @@ from .data import generate_user_data
 from .view_tickets import view_tickets_bp
 from .create_ticket import create_ticket_bp
 from dotenv import load_dotenv
+from .functions import login_required
+
 
 load_dotenv
 
@@ -41,8 +43,14 @@ def initialize_app():
                 db.executescript(f.read().decode("utf8"))
                 db.commit()
             logger.info("New database created")
-        else:
-            logger.info("Database found")
+
+    @app.before_request
+    def require_login():
+        public_routes = ["login.login", "static"]
+
+        if request.endpoint not in public_routes and 'user_id' not in session:
+            flash("You must be logged in to access this page.", "error")
+            return redirect(url_for('login.login'))
 
     initialize_database()
     generate_user_data()
@@ -52,4 +60,4 @@ def initialize_app():
     app.register_blueprint(view_tickets_bp)
     app.register_blueprint(create_ticket_bp)
 
-    return app
+    return app 
