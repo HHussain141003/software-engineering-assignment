@@ -51,7 +51,7 @@ def initialize_app():
         if request.endpoint not in public_routes and 'user_id' not in session:
             flash("You must be logged in to access this page.", "error")
             return redirect(url_for('login.login'))
-
+        
     initialize_database()
     generate_user_data()
     app.secret_key = secret_key
