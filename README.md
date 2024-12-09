@@ -18,21 +18,19 @@ This repository contains the code for Activity 1 of the assignment. Please follo
 
 ## Log-in
 
-There are 2 default users by default, `user` and `admin`. The details are as follow:
+There are 10 user records generated automatically. There are 9 users and 1 admin. The details are as follow:
 
 - User:
 
 ```
 username: user1
-email: user1@example.com
-password: user123
+password: user1
 ```
 
 - Admin:
 
 ```
 username: admin
-email: admin@example.com
 password: admin123
 ```
 
