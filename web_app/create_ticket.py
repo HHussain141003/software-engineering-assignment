@@ -27,18 +27,7 @@ def create_ticket():
         ticket_id = db.execute('SELECT last_insert_rowid()').fetchone()[0]
 
         flash('Ticket created successfully!', 'create_ticket_message')
-        return redirect(url_for('create_ticket.view_ticket', ticket_id=ticket_id))
+        return redirect(url_for('view_individual_ticket.view_ticket', ticket_id=ticket_id))
 
     return render_template('create_ticket.html', ticket="", description="", priority="Low", status="Created", created_at="", updated_at="")
 
-@create_ticket_bp.route("/view_tickets/<int:ticket_id>")
-def view_ticket(ticket_id):
-    db = get_db()
-
-    ticket = db.execute('SELECT * FROM tickets WHERE id = ?', (ticket_id,)).fetchone()
-
-    if not ticket:
-        flash('Ticket not found!', 'danger')
-        return redirect(url_for('create_ticket.create_ticket'))
-    
-    return render_template("view_ticket.html", ticket=ticket)

@@ -9,7 +9,7 @@ from .view_tickets import view_tickets_bp
 from .create_ticket import create_ticket_bp
 from dotenv import load_dotenv
 from .functions import login_required
-
+from .view_individual_ticket import view_individual_ticket_bp
 
 load_dotenv
 
@@ -59,5 +59,6 @@ def initialize_app():
     app.register_blueprint(home_bp)
     app.register_blueprint(view_tickets_bp)
     app.register_blueprint(create_ticket_bp)
-
+    app.register_blueprint(view_individual_ticket_bp)
+    
     return app 
