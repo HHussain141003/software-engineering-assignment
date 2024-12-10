@@ -27,11 +27,10 @@
           <td>{{ ticket.priority }}</td>
           <td>
             <a
-              href="{{ url_for('view_individual_ticket.view_ticket', ticket_id=ticket.id) }}"
+              href="{{ url_for('view_individual_ticket.view_ticket', ticket_id=ticket.id, prev_page=request.url) }}"
               class="submit"
+              >View more Details</a
             >
-              View More Details
-            </a>
           </td>
         </tr>
         {% endfor %}

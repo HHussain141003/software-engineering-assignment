@@ -33,9 +33,17 @@
           <td>{{ ticket.created_at }}</td>
           <td>{{ ticket.updated_at }}</td>
           <td>{{ ticket.user_id }}</td>
+          <td>
+            <a
+              href="{{ url_for('view_individual_ticket.view_ticket', ticket_id=ticket.id, prev_page=request.url) }}"
+              class="submit"
+              >View more Details</a
+            >
+          </td>
+          {% endfor %}
         </tr>
-        {% endfor %}
       </tbody>
     </table>
+    <a href="{{ url_for('home.home_screen') }}">Back to Home</a>
   </body>
 </html>

@@ -7,6 +7,5 @@ admin_bp = Blueprint('admin_bp', __name__)
 def admin_view_all_tickets():
     db = get_db()
     tickets = db.execute('SELECT * FROM tickets').fetchall()
-    print("Tickets:", tickets)
 
     return render_template('admin_screen.html', tickets=tickets)

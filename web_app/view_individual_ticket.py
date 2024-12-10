@@ -11,17 +11,16 @@ def view_ticket(ticket_id):
     role = session.get('role')
 
     # Admin can view all tickets
-    if role == 'admin':
-        ticket = db.execute('SELECT * FROM tickets WHERE id = ?', (ticket_id,)).fetchone()
-    else:
-        # Regular users can only view their own tickets
-        ticket = db.execute(
-            'SELECT * FROM tickets WHERE id = ? AND user_id = ?',
-            (ticket_id, user_id)
-        ).fetchone()
+    ticket = db.execute('SELECT * FROM tickets WHERE id = ?', (ticket_id,)).fetchone()
 
     if not ticket:
         flash('Ticket not found or you do not have permission to view it!', 'danger')
         return redirect(url_for('view_tickets.view_tickets'))
 
-    return render_template("view_ticket.html", ticket=ticket)
+    prev_page = request.args.get('prev_page', None)
+
+    if not prev_page:
+        prev_page = session.get('prev_page', url_for('home.home_screen'))
+
+    session['prev_page'] = request.referrer or url_for('home.home_screen')
+    return render_template("view_ticket.html", ticket=ticket, prev_page=prev_page)
