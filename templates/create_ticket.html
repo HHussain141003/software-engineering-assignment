@@ -38,23 +38,25 @@
         <tr>
           <td><label for="priority">Priority:</label></td>
           <td>
-            <select id="priority" name="priority" required>
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
+            <input
+              type="text"
+              id="priority"
+              name="priority"
+              value="Low"
+              readonly
+            />
           </td>
         </tr>
         <tr>
           <td><label for="status">Status:</label></td>
           <td>
-            <select id="status" name="status" required readonly>
-              <option value="Created" selected>Created</option>
-              <option value="In Progress">In Progress</option>
-              <option value="On Hold">On Hold</option>
-              <option value="Cancelled">Cancelled</option>
-              <option value="Solved">Solved</option>
-            </select>
+            <input
+              type="text"
+              id="status"
+              name="status"
+              value="Created"
+              readonly
+            />
           </td>
         </tr>
         <tr>
