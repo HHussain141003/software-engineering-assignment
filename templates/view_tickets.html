@@ -13,10 +13,9 @@
         <tr>
           <th>ID</th>
           <th>Title</th>
-          <th>Description</th>
           <th>Status</th>
           <th>Priority</th>
-          <th>Created At</th>
+          <th>Details</th>
         </tr>
       </thead>
       <tbody>
@@ -24,10 +23,15 @@
         <tr>
           <td>{{ ticket.id }}</td>
           <td>{{ ticket.title }}</td>
-          <td>{{ ticket.description }}</td>
           <td>{{ ticket.status }}</td>
           <td>{{ ticket.priority }}</td>
-          <td>{{ ticket.created_at }}</td>
+          <td>
+            <a
+              href="{{ url_for('view_individual_ticket.view_ticket', ticket_id=ticket.id, prev_page=request.url) }}"
+              class="submit"
+              >View more Details</a
+            >
+          </td>
         </tr>
         {% endfor %}
       </tbody>
@@ -35,5 +39,6 @@
     {% else %}
     <p>You have not submitted any tickets.</p>
     {% endif %}
+    <a href="{{ url_for('home.home_screen') }}">Back to Home</a>
   </body>
 </html>

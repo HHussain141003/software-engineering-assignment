@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, session, flash, redirect, url_for
 import os
 import logging
 from .login import login_bp
@@ -6,8 +6,11 @@ from .home import home_bp
 from .database import get_db
 from .data import generate_user_data
 from .view_tickets import view_tickets_bp
+from .create_ticket import create_ticket_bp
 from dotenv import load_dotenv
-
+from .functions import login_required
+from .view_individual_ticket import view_individual_ticket_bp
+from .admin import admin_bp
 load_dotenv
 
 secret_key = os.getenv("SECRET_KEY")
@@ -21,7 +24,7 @@ def initialize_app():
         os.path.join(os.path.dirname(__file__), "..", "templates")
     )
 
-    app = Flask(__name__, template_folder=template_folder_path)
+    app = Flask(__name__, template_folder=template_folder_path, static_folder="static")
 
     @app.before_request
     def initialize_database():
@@ -40,14 +43,23 @@ def initialize_app():
                 db.executescript(f.read().decode("utf8"))
                 db.commit()
             logger.info("New database created")
-        else:
-            logger.info("Database found")
 
+    @app.before_request
+    def require_login():
+        public_routes = ["login.login", "static"]
+
+        if request.endpoint not in public_routes and 'user_id' not in session:
+            flash("You must be logged in to access this page.", "error")
+            return redirect(url_for('login.login'))
+        
     initialize_database()
     generate_user_data()
     app.secret_key = secret_key
     app.register_blueprint(login_bp)
     app.register_blueprint(home_bp)
     app.register_blueprint(view_tickets_bp)
+    app.register_blueprint(create_ticket_bp)
+    app.register_blueprint(view_individual_ticket_bp)
+    app.register_blueprint(admin_bp)
 
-    return app
+    return app 

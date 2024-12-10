@@ -12,3 +12,4 @@ def view_tickets():
     tickets = [dict(row) for row in tickets]
 
     return render_template("view_tickets.html", tickets=tickets)
+

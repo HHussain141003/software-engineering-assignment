@@ -4,3 +4,4 @@ database.db
 .env
 local.py
 /deprecated/
+notes.txt

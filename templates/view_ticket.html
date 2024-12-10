@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Ticket</title>
+  </head>
+  <body>
+    <h1>Ticket Details</h1>
+    <table>
+      <tr>
+        <td><strong>Ticket ID:</strong></td>
+        <td>{{ ticket.Id }}</td>
+      </tr>
+      <tr>
+        <td><strong>Title:</strong></td>
+        <td>{{ ticket.title }}</td>
+      </tr>
+      <tr>
+        <td><strong>Description:</strong></td>
+        <td>{{ ticket.description }}</td>
+      </tr>
+      <tr>
+        <td><strong>Priority:</strong></td>
+        <td>{{ ticket.priority }}</td>
+      </tr>
+      <tr>
+        <td><strong>Status:</strong></td>
+        <td>{{ ticket.status }}</td>
+      </tr>
+      <tr>
+        <td><strong>Created At:</strong></td>
+        <td>{{ ticket.created_at }}</td>
+      </tr>
+      <tr>
+        <td><strong>Updated At:</strong></td>
+        <td>{{ ticket.updated_at }}</td>
+      </tr>
+    </table>
+    <a href="{{ prev_page }}">Go Back</a>
+  </body>
+</html>

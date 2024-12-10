@@ -14,7 +14,7 @@ CREATE TABLE tickets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     description TEXT NOT NULL,
-    status TEXT NOT NULL DEFAULT 'Open',
+    status TEXT NOT NULL DEFAULT 'Created',
     priority TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -34,16 +34,16 @@ CREATE TABLE comments (
 
 -- Sample data for each table
 INSERT INTO tickets (title, description, status, priority, user_id) VALUES
-('Login Issue', 'User cannot log in to their account.', 'Open', 'High', 2),
-('Broken Printer', 'The office printer is not working.', 'Open', 'Medium', 3),
-('Software Request', 'Request for Adobe Photoshop license.', 'Open', 'Low', 4),
+('Login Issue', 'User cannot log in to their account.', 'On hold', 'High', 2),
+('Broken Printer', 'The office printer is not working.', 'In progress', 'Medium', 3),
+('Software Request', 'Request for Adobe Photoshop license.', 'On hold', 'Low', 4),
 ('System Crash', 'The computer crashed during work.', 'In Progress', 'High', 5),
 ('Email Issue', 'Unable to send emails.', 'Resolved', 'High', 6),
-('Network Problem', 'Internet connection is unstable.', 'Open', 'Medium', 7),
+('Network Problem', 'Internet connection is unstable.', 'On hold', 'Medium', 7),
 ('Access Denied', 'Cannot access shared folder.', 'In Progress', 'Low', 8),
-('Update Error', 'System update failed to install.', 'Open', 'High', 9),
+('Update Error', 'System update failed to install.', 'In Progress', 'High', 9),
 ('Slow Performance', 'Computer is running very slow.', 'Resolved', 'Medium', 10),
-('Hardware Issue', 'Mouse is not functioning properly.', 'Open', 'Low', 2);
+('Hardware Issue', 'Mouse is not functioning properly.', 'Created', 'Low', 2);
 
 INSERT INTO comments (ticket_id, user_id, comment) VALUES
 (1, 3, 'Have you tried resetting your password?'),
