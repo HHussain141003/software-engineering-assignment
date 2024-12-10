@@ -19,6 +19,7 @@
           <th>Created At</th>
           <th>Updated At</th>
           <th>User ID</th>
+          <th>Username</th>
           <th>View Details</th>
         </tr>
       </thead>
@@ -33,6 +34,7 @@
           <td>{{ ticket.created_at }}</td>
           <td>{{ ticket.updated_at }}</td>
           <td>{{ ticket.user_id }}</td>
+          <td>{{ ticket.username }}</td>
           <td>
             <a
               href="{{ url_for('view_individual_ticket.view_ticket', ticket_id=ticket.id, prev_page=request.url) }}"
