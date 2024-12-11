@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
   </head>
   <body>
     <h1>Home Page</h1>
@@ -21,12 +26,14 @@
     >
       <button type="submit">Admin - View All Tickets</button>
     </form>
+    <form action="{{ url_for('admin_bp.add_user') }}" method="get">
+      <button type="submit">Admin - Add New User</button>
+    </form>
     {% endif %}
 
     <form id="logout-form" action="{{ url_for('login.logout') }}" method="POST">
       <button type="submit" class="btn btn-danger">Logout</button>
     </form>
-    <!-- Script to ask for confirmation before logging out -->
     <script src="{{ url_for('static', filename='js/log_out.js') }}"></script>
   </body>
 </html>
