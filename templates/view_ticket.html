@@ -37,7 +37,28 @@
         <td>{{ ticket.updated_at }}</td>
       </tr>
     </table>
-    {% if session['role'] == 'admin' %}
+    <h2>Comments</h2>
+    <div id="comments-section">
+      {% for comment in comments %}
+      <div class="comment">
+        <p><strong>{{ comment.username }}:</strong></p>
+        <p>{{ comment.comment }}</p>
+        <p class="timestamp">{{ comment.created_at }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% if session['user_id'] %}
+    <form method="POST">
+      <textarea
+        name="content"
+        placeholder="Write your comment here..."
+        required
+      ></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
+    {% else %}
+    <p>Please log in to post comments.</p>
+    {% endif %} {% if session['role'] == 'admin' %}
     <form
       action="{{ url_for('admin_bp.edit_ticket', ticket_id=ticket.id) }}"
       method="get"
