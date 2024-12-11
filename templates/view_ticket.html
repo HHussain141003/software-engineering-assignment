@@ -37,6 +37,14 @@
         <td>{{ ticket.updated_at }}</td>
       </tr>
     </table>
+    {% if session['role'] == 'admin' %}
+    <form
+      action="{{ url_for('admin_bp.edit_ticket', ticket_id=ticket.id) }}"
+      method="get"
+    >
+      <button type="submit">Edit Ticket</button>
+    </form>
+    {% endif %}
     <a href="{{ prev_page }}">Go Back</a>
   </body>
 </html>

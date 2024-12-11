@@ -19,12 +19,16 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def initialize_app():
-
+    # Need to declare paths manually (both for Templates and Static)
     template_folder_path = os.path.abspath(
         os.path.join(os.path.dirname(__file__), "..", "templates")
     )
 
-    app = Flask(__name__, template_folder=template_folder_path, static_folder="static")
+    static_folder_path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "static")
+    )
+
+    app = Flask(__name__, template_folder=template_folder_path, static_folder=static_folder_path)
 
     @app.before_request
     def initialize_database():

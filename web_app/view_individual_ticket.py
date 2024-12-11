@@ -10,11 +10,10 @@ def view_ticket(ticket_id):
     user_id = session.get('user_id')
     role = session.get('role')
 
-    # Admin can view all tickets
     ticket = db.execute('SELECT * FROM tickets WHERE id = ?', (ticket_id,)).fetchone()
 
     if not ticket:
-        flash('Ticket not found or you do not have permission to view it!', 'danger')
+        flash('Ticket not found or you do not have permission to view it!', 'error')
         return redirect(url_for('view_tickets.view_tickets'))
 
     prev_page = request.args.get('prev_page', None)
