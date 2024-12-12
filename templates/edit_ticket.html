@@ -50,7 +50,7 @@
           </table>
           <button type="submit">Save Changes</button>
         </form>
-        <a href="{{ url_for('admin_bp.admin_view_all_tickets') }}" id="cancel-link">Cancel</a>
+        <a href="{{ prev_page }}" id="cancel-link">Cancel</a>
       </div>
     </div>
     <script src="{{ url_for('static', filename='js/exit_record.js') }}"></script>

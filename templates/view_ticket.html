@@ -53,12 +53,10 @@
             </tr>
           </table>
           {% if session['role'] == 'admin' %}
-          <form
-            action="{{ url_for('admin_bp.edit_ticket', ticket_id=ticket.id) }}"
-            method="get"
+          <a
+            href="{{ url_for('admin_bp.edit_ticket', ticket_id=ticket.id) }}?prev_page={{ request.url }}"
+            >Edit Ticket</a
           >
-            <button type="submit">Edit Ticket</button>
-          </form>
           {% endif %}
         </div>
 
