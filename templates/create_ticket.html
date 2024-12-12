@@ -24,9 +24,7 @@
         messages %}
         <div id="flash-messages">
           {% for category, message in messages %} {% if category ==
-          'create_ticket_message' %}
-          <div class="alert">{{ message }}</div>
-          {% endif %} {% endfor %}
+          'create_ticket_message' %} {% endif %} {% endfor %}
         </div>
         {% endif %} {% endwith %}
 
