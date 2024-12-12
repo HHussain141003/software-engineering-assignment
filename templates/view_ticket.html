@@ -9,68 +9,94 @@
       type="text/css"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/view_ticket.css') }}"
+    />
   </head>
   <body>
-    <h1>Ticket Details</h1>
-    <table>
-      <tr>
-        <td><strong>Ticket ID:</strong></td>
-        <td>{{ ticket.Id }}</td>
-      </tr>
-      <tr>
-        <td><strong>Title:</strong></td>
-        <td>{{ ticket.title }}</td>
-      </tr>
-      <tr>
-        <td><strong>Description:</strong></td>
-        <td>{{ ticket.description }}</td>
-      </tr>
-      <tr>
-        <td><strong>Priority:</strong></td>
-        <td>{{ ticket.priority }}</td>
-      </tr>
-      <tr>
-        <td><strong>Status:</strong></td>
-        <td>{{ ticket.status }}</td>
-      </tr>
-      <tr>
-        <td><strong>Created At:</strong></td>
-        <td>{{ ticket.created_at }}</td>
-      </tr>
-      <tr>
-        <td><strong>Updated At:</strong></td>
-        <td>{{ ticket.updated_at }}</td>
-      </tr>
-    </table>
-    <h2>Comments</h2>
-    <div id="comments-section">
-      {% for comment in comments %}
-      <div class="comment">
-        <p><strong>{{ comment.username }}:</strong></p>
-        <p>{{ comment.comment }}</p>
-        <p class="timestamp">{{ comment.created_at }}</p>
+    <div class="view-ticket-container">
+      <!-- Content Box for Ticket Details and Comments -->
+      <div class="content-box">
+        <!-- Ticket Details Section -->
+        <div class="ticket-details">
+          <h1>Ticket Details</h1>
+          <table>
+            <tr>
+              <td><strong>Ticket ID:</strong></td>
+              <td>{{ ticket.Id }}</td>
+            </tr>
+            <tr>
+              <td><strong>Title:</strong></td>
+              <td>{{ ticket.title }}</td>
+            </tr>
+            <tr>
+              <td><strong>Description:</strong></td>
+              <td>{{ ticket.description }}</td>
+            </tr>
+            <tr>
+              <td><strong>Priority:</strong></td>
+              <td>{{ ticket.priority }}</td>
+            </tr>
+            <tr>
+              <td><strong>Status:</strong></td>
+              <td>{{ ticket.status }}</td>
+            </tr>
+            <tr>
+              <td><strong>Created At:</strong></td>
+              <td>{{ ticket.created_at }}</td>
+            </tr>
+            <tr>
+              <td><strong>Updated At:</strong></td>
+              <td>{{ ticket.updated_at }}</td>
+            </tr>
+          </table>
+          {% if session['role'] == 'admin' %}
+          <form
+            action="{{ url_for('admin_bp.edit_ticket', ticket_id=ticket.id) }}"
+            method="get"
+          >
+            <button type="submit">Edit Ticket</button>
+          </form>
+          {% endif %}
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+          <h1>Comments</h1>
+          <div class="comments-container">
+            {% for comment in comments %}
+            <div
+              class="comment {% if comment.username == session['username'] %}user{% else %}admin{% endif %}"
+            >
+              <p><strong>{{ comment.username }}:</strong></p>
+              <p>{{ comment.comment }}</p>
+              <p class="timestamp">{{ comment.created_at }}</p>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- Form for posting comments -->
+          {% if session['user_id'] %}
+          <div class="form-container">
+            <form method="POST">
+              <textarea
+                name="content"
+                placeholder="Write your comment here..."
+                required
+              ></textarea>
+              <button type="submit">Post Comment</button>
+              <a href="{{ prev_page }}">Go Back</a>
+            </form>
+          </div>
+          {% else %}
+          <p>Please log in to post comments.</p>
+          {% endif %}
+        </div>
       </div>
-      {% endfor %}
     </div>
-    {% if session['user_id'] %}
-    <form method="POST">
-      <textarea
-        name="content"
-        placeholder="Write your comment here..."
-        required
-      ></textarea>
-      <button type="submit">Post Comment</button>
-    </form>
-    {% else %}
-    <p>Please log in to post comments.</p>
-    {% endif %} {% if session['role'] == 'admin' %}
-    <form
-      action="{{ url_for('admin_bp.edit_ticket', ticket_id=ticket.id) }}"
-      method="get"
-    >
-      <button type="submit">Edit Ticket</button>
-    </form>
-    {% endif %}
-    <a href="{{ prev_page }}">Go Back</a>
+
+    <!-- Go back link -->
   </body>
 </html>
