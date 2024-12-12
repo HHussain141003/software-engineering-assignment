@@ -9,50 +9,68 @@
       type="text/css"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/admin_screen.css') }}"
+    />
   </head>
   <body>
-    <h1>Admin Screen</h1>
-    <h2>Number of tickets: {{ tickets | length }}</h2>
-    <table>
-      <thead>
-        <tr>
-          <th onclick="sortTable(0)">ID</th>
-          <th onclick="sortTable(1)">Title</th>
-          <th onclick="sortTable(2)">Description</th>
-          <th onclick="sortTable(3)">Status</th>
-          <th onclick="sortTable(4)">Priority</th>
-          <th onclick="sortTable(5)">Created At</th>
-          <th onclick="sortTable(6)">Updated At</th>
-          <th onclick="sortTable(7)">User ID</th>
-          <th onclick="sortTable(8)">Username</th>
+    <div class="admin-screen-container">
+      <div class="content-box">
+        <h1>Admin Screen</h1>
+        <h2>Total Tickets: {{ tickets | length }}</h2>
 
-          <th>View Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for ticket in tickets %}
-        <tr>
-          <td>{{ ticket.id }}</td>
-          <td>{{ ticket.title }}</td>
-          <td>{{ ticket.description }}</td>
-          <td>{{ ticket.status }}</td>
-          <td>{{ ticket.priority }}</td>
-          <td>{{ ticket.created_at }}</td>
-          <td>{{ ticket.updated_at }}</td>
-          <td>{{ ticket.user_id }}</td>
-          <td>{{ ticket.username }}</td>
-          <td>
-            <a
-              href="{{ url_for('view_individual_ticket.view_ticket', ticket_id=ticket.id, prev_page=request.url) }}"
-              class="submit"
-              >View more Details</a
-            >
-          </td>
-          {% endfor %}
-        </tr>
-      </tbody>
-    </table>
-    <a href="{{ url_for('home.home_screen') }}">Back to Home</a>
+        {% if tickets %}
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th onclick="sortTable(0)">ID</th>
+                <th onclick="sortTable(1)">Title</th>
+                <th onclick="sortTable(2)">Description</th>
+                <th onclick="sortTable(3)">Status</th>
+                <th onclick="sortTable(4)">Priority</th>
+                <th onclick="sortTable(5)">Created At</th>
+                <th onclick="sortTable(6)">Updated At</th>
+                <th onclick="sortTable(7)">User ID</th>
+                <th onclick="sortTable(8)">Username</th>
+                <th>View Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ticket in tickets %}
+              <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.title }}</td>
+                <td>{{ ticket.description }}</td>
+                <td>{{ ticket.status }}</td>
+                <td>{{ ticket.priority }}</td>
+                <td>{{ ticket.created_at }}</td>
+                <td>{{ ticket.updated_at }}</td>
+                <td>{{ ticket.user_id }}</td>
+                <td>{{ ticket.username }}</td>
+                <td>
+                  <a
+                    href="{{ url_for('view_individual_ticket.view_ticket', ticket_id=ticket.id, prev_page=request.url) }}"
+                    class="details-link"
+                    >View more Details</a
+                  >
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="no-tickets-message">No tickets available at the moment.</p>
+        {% endif %}
+
+        <a href="{{ url_for('home.home_screen') }}" class="back-home-button"
+          >Back to Home</a
+        >
+      </div>
+    </div>
     <script src="{{ url_for('static', filename='js/sort_tables.js') }}"></script>
   </body>
 </html>

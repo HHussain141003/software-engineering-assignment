@@ -19,7 +19,6 @@
     <div class="view-tickets-container">
       <div class="content-box">
         <h1>My Tickets</h1>
-
         {% if tickets %}
         <div class="table-wrapper">
           <table>
@@ -54,7 +53,6 @@
         {% else %}
         <p class="no-tickets-message">You have not submitted any tickets.</p>
         {% endif %}
-
         <a href="{{ url_for('home.home_screen') }}" class="back-home-button"
           >Back to Home</a
         >
