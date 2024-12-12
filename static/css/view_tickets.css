@@ -1,0 +1,98 @@
+.view-tickets-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #f4f4f4;
+}
+
+.content-box {
+  background-color: #ffffff;
+  padding: 2em;
+  border-radius: 1.5em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 1.5em;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 2em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #007bff;
+  color: white;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.75em 1em;
+  border: 1px solid #ddd;
+}
+
+th {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+th:hover {
+  background-color: #0056b3;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.details-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.details-link:hover {
+  color: #0056b3;
+}
+
+.no-tickets-message {
+  font-size: 1.2em;
+  color: #888;
+  margin: 2em 0;
+}
+
+.back-home-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 0.5em;
+  text-decoration: none;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-home-button:hover {
+  background-color: #0056b3;
+  color: white;
+}
