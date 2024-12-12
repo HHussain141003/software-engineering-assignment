@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
 function sortTable(table, columnIndex) {
   const tbody = table.querySelector("tbody"); // Explicitly target tbody
   const rows = Array.from(tbody.querySelectorAll("tr")); // Get all rows within tbody
-  console.log("Rows before sorting:", rows); // Debug log to check rows
 
   const isAscending = table
     .querySelectorAll("th")
@@ -22,7 +21,6 @@ function sortTable(table, columnIndex) {
   rows.sort((rowA, rowB) => {
     const cellA = rowA.cells[columnIndex].innerText.trim();
     const cellB = rowB.cells[columnIndex].innerText.trim();
-    console.log(`Comparing: ${cellA} vs ${cellB}`); // Debug log to see the cell values
 
     const valueA = isNaN(cellA) ? cellA : parseFloat(cellA);
     const valueB = isNaN(cellB) ? cellB : parseFloat(cellB);

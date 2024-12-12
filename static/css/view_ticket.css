@@ -1,0 +1,173 @@
+/* Container for the entire view ticket page */
+.view-ticket-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 90vh;
+  padding: 2em;
+  background-color: #f4f4f4;
+}
+
+/* Content box that holds both ticket details and comments */
+.content-box {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 2em;
+  border-radius: 1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ticket details section */
+.ticket-details {
+  margin-bottom: 2em;
+}
+
+/* Ticket details table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2em;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1em;
+}
+
+strong {
+  color: #333;
+}
+
+/* Comments section */
+.comments-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container for scrollable comments */
+.comments-container {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 2em;
+  padding-right: 1em;
+}
+
+/* Individual comment */
+.comment {
+  background-color: #f1f1f1;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment p {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.comment.user {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.comment.admin {
+  background-color: #e9e9e9;
+  align-self: flex-start;
+}
+
+/* Timestamp styling */
+.timestamp {
+  font-size: 0.8em;
+  color: #888;
+  text-align: right;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column; /* Stack the form elements vertically */
+  justify-content: center; /* Center the form content horizontally */
+  align-items: center; /* Center content vertically */
+  margin-top: 2em;
+}
+
+.form-container form {
+  width: 100%;
+  max-width: 600px; /* Optional: to limit the form width */
+  text-align: center; /* This will center the text inside the form */
+}
+
+/* Form for posting a comment */
+.form-container form textarea {
+  width: 100%;
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 0.5em;
+  border: 1px solid #ccc;
+  font-size: 1.1em;
+  resize: vertical;
+}
+
+.form-container form button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75em 2em;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-top: 1em;
+}
+
+.form-container form button:hover {
+  background-color: #0056b3;
+}
+
+.form-container form a {
+  display: inline-block;
+  margin-top: 1em;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1.1em;
+}
+
+.form-container form a:hover {
+  color: #0056b3;
+}
+
+/* Go back link styling */
+a {
+  display: block;
+  margin-top: 2em;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1.1em;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* Admin Edit Ticket button */
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75em 2em;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-top: 1.5em;
+  display: block; /* Ensures button is block-level to center */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}

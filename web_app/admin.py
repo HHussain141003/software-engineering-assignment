@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from datetime import datetime
 from .database import get_db
 from werkzeug.security import generate_password_hash
+from urllib.parse import unquote
 
 admin_bp = Blueprint('admin_bp', __name__)
 
@@ -21,7 +22,12 @@ def admin_view_all_tickets():
 @admin_bp.route('/edit_ticket/<int:ticket_id>', methods=['GET', 'POST'])
 def edit_ticket(ticket_id):
     db = get_db()
+    prev_page = request.args.get('prev_page', session.get('prev_page', url_for('home.home_screen')))
+    prev_page = unquote(prev_page)  # URL decode to ensure proper handling of the URL
 
+    session['prev_page'] = request.referrer or url_for('home.home_screen')
+
+    # Process the form if it's a POST request
     if request.method == "POST":
         title = request.form['title']
         description = request.form['description']
@@ -42,9 +48,11 @@ def edit_ticket(ticket_id):
         flash('Ticket updated successfully!', 'success')
         return redirect(url_for('admin_bp.admin_view_all_tickets'))
     
+    # Retrieve ticket information for editing
     ticket = db.execute('SELECT * FROM tickets WHERE id = ?',(ticket_id,)).fetchone()
 
-    return render_template('edit_ticket.html', ticket=ticket)
+    # Pass the ticket data and prev_page to the template
+    return render_template('edit_ticket.html', ticket=ticket, prev_page=prev_page)
 
 @admin_bp.route("/add_user", methods=["GET", "POST"])
 def add_user():

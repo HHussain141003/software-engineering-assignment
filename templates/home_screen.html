@@ -9,31 +9,51 @@
       type="text/css"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/home_screen.css') }}"
+    />
   </head>
   <body>
-    <h1>Home Page</h1>
-    <form action="{{ url_for('create_ticket.create_ticket') }}" method="get">
-      <button type="submit">Create a New Ticket</button>
-    </form>
-    <form action="{{ url_for('view_tickets.view_tickets') }}" method="get">
-      <button type="submit">View Tickets</button>
-    </form>
+    <div class="home-container">
+      <div class="content-box">
+        <h1>Home Page</h1>
 
-    {% if session['role'] == 'admin' %}
-    <form
-      action="{{ url_for('admin_bp.admin_view_all_tickets') }}"
-      method="get"
-    >
-      <button type="submit">Admin - View All Tickets</button>
-    </form>
-    <form action="{{ url_for('admin_bp.add_user') }}" method="get">
-      <button type="submit">Admin - Add New User</button>
-    </form>
-    {% endif %}
+        <form
+          action="{{ url_for('create_ticket.create_ticket') }}"
+          method="get"
+        >
+          <button type="submit">New ticket</button>
+        </form>
 
-    <form id="logout-form" action="{{ url_for('login.logout') }}" method="POST">
-      <button type="submit" class="btn btn-danger">Logout</button>
-    </form>
+        <form action="{{ url_for('view_tickets.view_tickets') }}" method="get">
+          <button type="submit">View my tickets</button>
+        </form>
+
+        {% if session['role'] == 'admin' %}
+        <form
+          action="{{ url_for('admin_bp.admin_view_all_tickets') }}"
+          method="get"
+        >
+          <button type="submit">View all tickets</button>
+        </form>
+        <form action="{{ url_for('admin_bp.add_user') }}" method="get">
+          <button type="submit">Add a new user</button>
+        </form>
+        {% endif %}
+
+        <form
+          id="logout-form"
+          class="logout-form"
+          action="{{ url_for('login.logout') }}"
+          method="POST"
+        >
+          <button type="submit">Logout</button>
+        </form>
+      </div>
+    </div>
+
     <script src="{{ url_for('static', filename='js/log_out.js') }}"></script>
   </body>
 </html>

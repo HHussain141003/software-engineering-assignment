@@ -3,41 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Individual Ticket</title>
+    <title>Create Ticket</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/create_ticket.css') }}"
+    />
   </head>
   <body>
-    <h1>Ticket</h1>
+    <div class="create-record-container">
+      <div class="content-box">
+        <h1>Create Ticket</h1>
 
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %}
-    <div id="flash-messages">
-      {% for category, message in messages %} {% if category ==
-      'create_ticket_message' %}
-      <div class="create ticket message">{{ message }}</div>
-      {% endif %} {% endfor %}
-    </div>
-    {% endif %} {% endwith %}
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <div id="flash-messages">
+          {% for category, message in messages %} {% if category ==
+          'create_ticket_message' %} {% endif %} {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
 
-    <form method="POST" action="/create_ticket">
-      <table>
-        <tr>
-          <td><label for="title">Title:</label></td>
-          <td><input type="text" id="title" name="title" required /></td>
-        </tr>
-        <tr>
-          <td><label for="description">Description:</label></td>
-          <td>
+        <form method="POST" action="/create_ticket">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required />
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description:</label>
             <textarea
               id="description"
               name="description"
               rows="5"
               required
             ></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td><label for="priority">Priority:</label></td>
-          <td>
+          </div>
+
+          <div class="form-group">
+            <label for="priority">Priority:</label>
             <input
               type="text"
               id="priority"
@@ -45,11 +53,10 @@
               value="Low"
               readonly
             />
-          </td>
-        </tr>
-        <tr>
-          <td><label for="status">Status:</label></td>
-          <td>
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status:</label>
             <input
               type="text"
               id="status"
@@ -57,11 +64,10 @@
               value="Created"
               readonly
             />
-          </td>
-        </tr>
-        <tr>
-          <td><label for="created_at">Created At:</label></td>
-          <td>
+          </div>
+
+          <div class="form-group">
+            <label for="created_at">Created At:</label>
             <input
               type="text"
               id="created_at"
@@ -69,11 +75,10 @@
               value="{% if created_at %}{{ created_at }}{% endif %}"
               readonly
             />
-          </td>
-        </tr>
-        <tr>
-          <td><label for="updated_at">Updated At:</label></td>
-          <td>
+          </div>
+
+          <div class="form-group">
+            <label for="updated_at">Updated At:</label>
             <input
               type="text"
               id="updated_at"
@@ -81,10 +86,19 @@
               value="{% if updated_at %}{{ updated_at }}{% endif %}"
               readonly
             />
-          </td>
-        </tr>
-      </table>
-      <button type="submit">Submit</button>
-    </form>
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+
+        <a
+          href="{{ url_for('home.home_screen') }}"
+          class="cancel-button"
+          id="cancel-link"
+          >Cancel</a
+        >
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/exit_record.js') }}"></script>
   </body>
 </html>

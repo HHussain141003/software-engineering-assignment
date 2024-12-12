@@ -27,6 +27,9 @@ def view_ticket(ticket_id):
         (ticket_id,)
     ).fetchall()
 
+    prev_page = request.args.get('prev_page', session.get('prev_page', url_for('home.home_screen')))
+    session['prev_page'] = request.referrer or url_for('home.home_screen')
+
     if request.method == "POST":
         content = request.form.get("content")
         if not content:
@@ -38,9 +41,6 @@ def view_ticket(ticket_id):
             )
             db.commit()
             flash("Comment added successfully!", "success")
-            return redirect(url_for('view_individual_ticket.view_ticket', ticket_id=ticket_id))
-
-    prev_page = request.args.get('prev_page', session.get('prev_page', url_for('home.home_screen')))
-    session['prev_page'] = request.referrer or url_for('home.home_screen')
+            return redirect(url_for('view_individual_ticket.view_ticket', ticket_id=ticket_id, prev_page=prev_page))
 
     return render_template("view_ticket.html", ticket=ticket, comments=comments, prev_page=prev_page)
