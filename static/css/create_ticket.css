@@ -1,0 +1,98 @@
+.create-record-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #f8f9fa;
+}
+
+.create-record-container .content-box {
+  background-color: #ffffff;
+  padding: 2.5em 3em;
+  border-radius: 1.5em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.create-record-container h1 {
+  font-size: 2.25em;
+  margin-bottom: 1.5em;
+  color: #343a40;
+}
+
+form .form-group {
+  margin-bottom: 1.5em;
+  text-align: left;
+}
+
+form .form-group label {
+  display: block;
+  font-size: 1em;
+  color: #343a40;
+  margin-bottom: 0.5em;
+}
+
+form .form-group input,
+form .form-group textarea {
+  width: 100%;
+  padding: 0.8em;
+  border: 1px solid #ced4da;
+  border-radius: 0.5em;
+  font-size: 1em;
+  box-sizing: border-box;
+  color: #495057;
+}
+
+form .form-group textarea {
+  resize: vertical;
+}
+
+form .form-group input[readonly],
+form .form-group textarea[readonly] {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+form button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.8em 1.5em;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 1.1em;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 1em;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+form .cancel-button {
+  background-color: #dc3545;
+}
+
+form .cancel-button:hover {
+  background-color: #c82333;
+}
+
+#flash-messages {
+  margin-bottom: 1em;
+}
+
+.alert {
+  text-align: left;
+  color: #dc3545;
+  font-size: 0.9em;
+  padding: 0.8em;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 0.5em;
+}
