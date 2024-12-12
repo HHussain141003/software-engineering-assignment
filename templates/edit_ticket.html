@@ -5,49 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Ticket</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/edit_ticket.css') }}">
   </head>
   <body>
-    <h1>Edit Ticket</h1>
-    <form method="POST" action="{{ url_for('admin_bp.edit_ticket', ticket_id=ticket.id) }}">
-      <table>
-        <tr>
-            <td><label for="title">ID:</label></td>
-            <td><input type="text" id="id" name="ticket_id" value="{{ ticket.id }}" readonly /></td>
-          </tr>
-        <tr>
-          <td><label for="title">Title:</label></td>
-          <td><input type="text" id="title" name="title" value="{{ ticket.title }}" required /></td>
-        </tr>
-        <tr>
-          <td><label for="description">Description:</label></td>
-          <td><textarea id="description" name="description" rows="5" required>{{ ticket.description }}</textarea></td>
-        </tr>
-        <tr>
-          <td><label for="priority">Priority:</label></td>
-          <td>
-            <select id="priority" name="priority" required>
-              <option value="Low" {% if ticket.priority == 'Low' %}selected{% endif %}>Low</option>
-              <option value="Medium" {% if ticket.priority == 'Medium' %}selected{% endif %}>Medium</option>
-              <option value="High" {% if ticket.priority == 'High' %}selected{% endif %}>High</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td><label for="status">Status:</label></td>
-          <td>
-            <select id="status" name="status" required>
-              <option value="Created" {% if ticket.status == 'Created' %}selected{% endif %}>Created</option>
-              <option value="In Progress" {% if ticket.status == 'In Progress' %}selected{% endif %}>In Progress</option>
-              <option value="On Hold" {% if ticket.status == 'On Hold' %}selected{% endif %}>On Hold</option>
-              <option value="Cancelled" {% if ticket.status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
-              <option value="Solved" {% if ticket.status == 'Solved' %}selected{% endif %}>Solved</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-      <button type="submit">Save Changes</button>
-    </form>
-    <a href="{{ url_for('admin_bp.admin_view_all_tickets') }}" id="cancel-link">Cancel</a>
+    <div class="edit-ticket-container">
+      <div class="content-box">
+        <h1>Edit Ticket</h1>
+        <form method="POST" action="{{ url_for('admin_bp.edit_ticket', ticket_id=ticket.id) }}">
+          <table>
+            <tr>
+              <td><label for="id">ID:</label></td>
+              <td><input type="text" id="id" name="ticket_id" value="{{ ticket.id }}" readonly /></td>
+            </tr>
+            <tr>
+              <td><label for="title">Title:</label></td>
+              <td><input type="text" id="title" name="title" value="{{ ticket.title }}" required /></td>
+            </tr>
+            <tr>
+              <td><label for="description">Description:</label></td>
+              <td><textarea id="description" name="description" rows="5" required>{{ ticket.description }}</textarea></td>
+            </tr>
+            <tr>
+              <td><label for="priority">Priority:</label></td>
+              <td>
+                <select id="priority" name="priority" required>
+                  <option value="Low" {% if ticket.priority == 'Low' %}selected{% endif %}>Low</option>
+                  <option value="Medium" {% if ticket.priority == 'Medium' %}selected{% endif %}>Medium</option>
+                  <option value="High" {% if ticket.priority == 'High' %}selected{% endif %}>High</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="status">Status:</label></td>
+              <td>
+                <select id="status" name="status" required>
+                  <option value="Created" {% if ticket.status == 'Created' %}selected{% endif %}>Created</option>
+                  <option value="In Progress" {% if ticket.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                  <option value="On Hold" {% if ticket.status == 'On Hold' %}selected{% endif %}>On Hold</option>
+                  <option value="Cancelled" {% if ticket.status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                  <option value="Solved" {% if ticket.status == 'Solved' %}selected{% endif %}>Solved</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+          <button type="submit">Save Changes</button>
+        </form>
+        <a href="{{ url_for('admin_bp.admin_view_all_tickets') }}" id="cancel-link">Cancel</a>
+      </div>
+    </div>
     <script src="{{ url_for('static', filename='js/exit_record.js') }}"></script>
   </body>
 </html>
