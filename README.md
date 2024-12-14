@@ -3,6 +3,8 @@
 - [Introduction](#introduction)
   - [Problem Statement](#problem-statement)
   - [Project Scope Statement](#scope-statement)
+  - [Entity Relationship Diagram](#database-design-overview)
+  - [Annotated Screenshots](#annotated-screenshots)
 - [Setting up the Application](#setting-up-the-application)
 - [App Use](#app-use)
   - [Log-in](#log-in)
@@ -85,6 +87,39 @@
 
    - The styling of the application will be basic since the academic requirements do not grant marks for design or UX.
 
+## Database Design Overview:
+
+![ERD](./documentation/erd.png)
+
+## Annotated Screenshots
+
+This section contains screenshots and details how to navigate through the application.
+
+1. When the application is first launched the user needs to log in.
+   ![Login](./documentation/1.login.png)
+
+2. Depending on the role of the user the home screen can appear with different buttons and options (The first image is the home screen for the Basic User and the second image is for the Administrator)
+   ![Basic-User](./documentation/2.home-user.png)
+   ![Administrator](./documentation/3.home-admin.png)
+
+3. The `New Ticket` button redirects user to the following screen where the user can enter the details for the request ticket.
+   ![New-Ticket](./documentation/4.new-ticket.png)
+
+4. Once a new ticket has been created it redirects the user automatically to a dynamically rendered screen of the record (The Edit Ticket button is visible since the Administrator account is used)
+   ![View-Ticket](./documentation/5.view-ticket.png)
+
+5. The `Edit Ticket` button shows this screen to the administrator allowing him to edit the record itself.
+   ![Edit-Ticket](./documentation/6.edit-ticket.png)
+
+6. The `View my tickets` button redirects the user to a screen where they can see the support request tickets they have created.
+   ![View-My-Tickets](./documentation/7.view-my-tickets.png)
+
+7. The `View all tickets` button allows an administrator to view all the tickets in the database.
+   ![View-All-Tickets](./documentation/8.view-all-tickets.png)
+
+8. The `Add a new user` button allows an administrator to add a new user to the user table allowing them to access the application.
+   ![Add-User](./documentation/9.add-user.png)
+
 # Setting up the Application
 
 - Create a virtual environment: `python -m venv venv`
@@ -116,7 +151,3 @@ password: admin123
 # App Documentation:
 
 This app aims to simulate an IT Support app where a user can raise a ticked and an IT Support officer will aim to resolve them. There are 3 tables, User, Ticket, and Comment
-
-## Entity Relationship Diagram:
-
-![ERD](./documentation/erd.png)
