@@ -5,9 +5,7 @@
   - [Project Scope Statement](#scope-statement)
   - [Entity Relationship Diagram](#database-design-overview)
   - [Annotated Screenshots](#annotated-screenshots)
-- [Setting up the Application](#setting-up-the-application)
-- [App Use](#app-use)
-  - [Log-in](#log-in)
+- [Running the Application](#running-the-application)
 
 # Introduction
 
@@ -43,7 +41,7 @@
 
      - Validation to ensure accurate and consistent support request tickets.
 
-     - Tickets cannot be explicitly deleted since they can still be used to identify recurring tickets, trends, or patterns which might be adversely affected if tickets are deleted. However they can be marked as Cancelled or Resolved to "soft delete" them.
+     - Tickets cannot be explicitly deleted as they are used for tracking recurring issues, identifying trends, or patterns. Instead, tickets can be marked as 'Cancelled' or 'Resolved' to simulate deletion while preserving their data for future analysis.
 
    - Comments:
 
@@ -120,34 +118,21 @@ This section contains screenshots and details how to navigate through the applic
 8. The `Add a new user` button allows an administrator to add a new user to the user table allowing them to access the application.
    ![Add-User](./documentation/9.add-user.png)
 
-# Setting up the Application
+# Running the application
 
-- Create a virtual environment: `python -m venv venv`
+1. Create a virtual environment: `python -m venv venv`
 
-- Install dependencies: `pip install -r requirements.txt`
+2. Activate the virtual environment.
 
-- Create a `.env` file and add any value e.g. `SECRET_KEY = 'flask_secret_key_123'`
+3. Install dependencies: `pip install -r requirements.txt`
 
-# App Use:
+4. Create a `.env` file and add any value e.g. `SECRET_KEY = 'flask_secret_key_123'`
 
-## Log-in
+5. Run the application in the terminal: `python app.py`
 
-There are 10 user records generated automatically. There are 9 users and 1 admin. The details are as follow:
-
-- User:
-
-```
-username: user1
-password: user1
-```
-
-- Admin:
+6. The default administrator account's details are:
 
 ```
 username: admin
 password: admin123
 ```
-
-# App Documentation:
-
-This app aims to simulate an IT Support app where a user can raise a ticked and an IT Support officer will aim to resolve them. There are 3 tables, User, Ticket, and Comment
