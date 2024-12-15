@@ -6,6 +6,7 @@
   - [Entity Relationship Diagram](#database-design-overview)
   - [Annotated Screenshots](#annotated-screenshots)
 - [Running the Application](#running-the-application)
+- [Testing the Application](#testing-the-application)
 
 # Introduction
 
@@ -136,3 +137,31 @@ This section contains screenshots and details how to navigate through the applic
 username: admin
 password: admin123
 ```
+
+# Testing the Aplication
+
+This project contains all the functional testing performed, documented in the `tests.xlsx` file. The tests cover all the key features of the application:
+
+1. **User Login:** Valid and invalid login attempts as well as missing inputs.
+
+2. **Ticket Management:** Creating, updating, and validating tickets in different scenarios.
+
+3. **Role-Based Permissions:** Tests covering different actions that both basic users and adminstrators should perform.
+
+4. **Comments:** Adding comments and handling any missing inputs adequately.
+
+## Why unit tests were not included
+
+Due to the small scale and scope of the application creating unit tests was not deemed necessary due to the following factors:
+
+1. **Development Time:** Including unit tests would have required additional develpoment time, which would be counterproductive as the application is straightforward and it's functionality can be easily manually validated.
+
+2. **Low Complexity:** The core login of the application is simple and does not involve intricate functions that might require isolation throught uinit testing. Manual testing was sufficient in covering all the components.
+
+3. **Small Scope:** This project offers a limited set of features, which can all be easily tested manually.
+
+## Testing Approach
+
+The functional testing performed includes positive and negative scenarios to ensure the application performs as expected underr various different circumstances. The test outcomes were documented and the test cases passed successfully.
+
+If this project were to be expanded upon in future iterations then unit testing could be implemented with frameworks such as `pytest` or `unittest` to enhance development time reducing the need for manual testing and following best practices.
