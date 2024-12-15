@@ -54,7 +54,7 @@
 
      - Implementation of an SQLite database to store user information, tickets, and comments.
 
-     - Relationship between the tables to ensure daa integrity.
+     - Relationship between the tables to ensure data integrity.
 
    - Code and Documentation:
 
@@ -138,7 +138,7 @@ username: admin
 password: admin123
 ```
 
-# Testing the Aplication
+# Testing the Application
 
 This project contains all the functional testing performed, documented in the `tests.xlsx` file. The tests cover all the key features of the application:
 
@@ -154,14 +154,14 @@ This project contains all the functional testing performed, documented in the `t
 
 Due to the small scale and scope of the application creating unit tests was not deemed necessary due to the following factors:
 
-1. **Development Time:** Including unit tests would have required additional develpoment time, which would be counterproductive as the application is straightforward and it's functionality can be easily manually validated.
+1. **Development Time:** The straightforward nature of the application made manual testing sufficient within the given timeframe.
 
-2. **Low Complexity:** The core login of the application is simple and does not involve intricate functions that might require isolation throught uinit testing. Manual testing was sufficient in covering all the components.
+2. **Low Complexity:** The application's core logic is simple, without intricate functions requiring unit test isolation.
 
 3. **Small Scope:** This project offers a limited set of features, which can all be easily tested manually.
 
 ## Testing Approach
 
-The functional testing performed includes positive and negative scenarios to ensure the application performs as expected underr various different circumstances. The test outcomes were documented and the test cases passed successfully.
+The functional testing performed includes positive and negative scenarios to ensure the application performs as expected under various different circumstances. The test outcomes were documented and the test cases passed successfully.
 
 If this project were to be expanded upon in future iterations then unit testing could be implemented with frameworks such as `pytest` or `unittest` to enhance development time reducing the need for manual testing and following best practices.
