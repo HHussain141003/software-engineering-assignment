@@ -32,27 +32,27 @@ CREATE TABLE comments (
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
--- Sample data for each table
+-- Sample data for each table (Sample data for user table is in data.py since the passwords require encryption.)
 INSERT INTO tickets (title, description, status, priority, user_id) VALUES
-('Login Issue', 'User cannot log in to their account.', 'On hold', 'High', 2),
+('Login Issue', 'Unable to log in to account.', 'On hold', 'High', 2),
 ('Broken Printer', 'The office printer is not working.', 'In progress', 'Medium', 3),
 ('Software Request', 'Request for Adobe Photoshop license.', 'On hold', 'Low', 4),
-('System Crash', 'The computer crashed during work.', 'In Progress', 'High', 5),
-('Email Issue', 'Unable to send emails.', 'Resolved', 'High', 6),
-('Network Problem', 'Internet connection is unstable.', 'On hold', 'Medium', 7),
-('Access Denied', 'Cannot access shared folder.', 'In Progress', 'Low', 8),
-('Update Error', 'System update failed to install.', 'In Progress', 'High', 9),
-('Slow Performance', 'Computer is running very slow.', 'Resolved', 'Medium', 10),
+('System Crash', 'Computer crashed unexpectedly.', 'In Progress', 'High', 5),
+('Email Issue', 'Unable to send and receive emails.', 'Resolved', 'High', 6),
+('Network Problem', 'Internet connection drops frequently.', 'On hold', 'Medium', 7),
+('Access Denied', 'No access to the shared folder.', 'In Progress', 'Low', 8),
+('Update Error', 'System update failed repeatedly.', 'In Progress', 'High', 9),
+('Slow Performance', 'System is very slow to respond.', 'Resolved', 'Medium', 10),
 ('Hardware Issue', 'Mouse is not functioning properly.', 'Created', 'Low', 2);
 
 INSERT INTO comments (ticket_id, user_id, comment) VALUES
-(1, 3, 'Have you tried resetting your password?'),
-(1, 2, 'Yes, but the problem persists.'),
-(2, 5, 'Contacted the printer vendor for support.'),
-(3, 4, 'License request submitted to the IT department.'),
-(4, 6, 'The crash logs have been reviewed, reinstalling drivers.'),
-(5, 7, 'Issue resolved after email settings were corrected.'),
-(6, 8, 'Network cables checked, awaiting ISP response.'),
-(7, 9, 'Permission issue identified, working on resolution.'),
-(8, 10, 'Retrying the update with the correct installer.'),
-(9, 2, 'Cleared cache and ran diagnostics, system improved.');
+(1, 2, 'I tried resetting the password, but it did not work.'),
+(2, 3, 'Contacted printer vendor for assistance.'),
+(3, 4, 'I submitted the license request to the IT team.'),
+(4, 5, 'Reinstalled drivers and monitored for stability.'),
+(5, 6, 'Resolved after correcting the email server settings.'),
+(6, 7, 'Checked the cables, waiting for ISP update.'),
+(7, 8, 'It appears to be a permission issue, fixing now.'),
+(8, 9, 'Attempting update with proper installer settings.'),
+(9, 10, 'Ran diagnostics and cleaned unnecessary files.'),
+(10, 2, 'Replaced the mouse, now functioning properly.');
