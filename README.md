@@ -146,7 +146,7 @@ This project contains all the functional testing performed, documented in the `t
 
 2. **Ticket Management:** Creating, updating, and validating tickets in different scenarios.
 
-3. **Role-Based Permissions:** Tests covering different actions that both basic users and adminstrators should perform.
+3. **Role-Based Permissions:** Tests covering different actions that both basic users and administrators should perform.
 
 4. **Comments:** Adding comments and handling any missing inputs adequately.
 
