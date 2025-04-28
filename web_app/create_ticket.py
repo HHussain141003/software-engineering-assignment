@@ -27,7 +27,11 @@ def create_ticket():
         ticket_id = db.execute('SELECT last_insert_rowid()').fetchone()[0]
 
         flash('Ticket created successfully!', 'create_ticket_message')
-        return redirect(url_for('view_individual_ticket.view_ticket', ticket_id=ticket_id))
+
+        prev_page = request.args.get('prev_page', session.get('prev_page', url_for('home.home_screen')))
+        session['prev_page'] = request.referrer or url_for('home.home_screen')
+
+        return redirect(url_for('view_individual_ticket.view_ticket', ticket_id=ticket_id, prev_page=prev_page))
 
     return render_template('create_ticket.html', ticket="", description="", priority="Low", status="Created", created_at="", updated_at="")
 
