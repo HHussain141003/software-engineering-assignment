@@ -5,3 +5,4 @@ database.db
 local.py
 /deprecated/
 notes.txt
+.pytest_cache
