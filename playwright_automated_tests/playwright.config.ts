@@ -1,9 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
 require('dotenv').config()
-import { platform } from 'os';
+import path from 'path';
 
-const isWindows = platform() === 'win32';
 const isCI = !!process.env.CI;
+
+const command = isCI
+  ? 'cd .. && python -m venv venv && venv\\Scripts\\activate.ps1 && python app.py'
+  : 'cd .. && venv\\Scripts\\activate.ps1 && python app.py';
 
 // console.log(process.env) // remove this after you've confirmed it is working
 /**
@@ -46,23 +49,11 @@ export default defineConfig({
   },
 
   webServer: {
-    command: process.env.CI
-      // CI command: Create venv, install dependencies, and run app
-      ? 'cd .. && python -m venv venv && ' + 
-        (isWindows 
-          // Windows CI environment (Azure Pipelines)
-          ? 'venv\/Scripts\/pip.exe install -r requirements.txt && venv\/Scripts\/python.exe app.py'  
-          // Linux/macOS CI environment 
-          : './venv/bin/pip install -r requirements.txt && ./venv/bin/python app.py')
-      // Local command
-      : isWindows
-        ? 'cd .. && venv\/Scripts\/Activate.ps1; && python app.py'
-        : 'cd .. && source venv/bin/activate && python app.py',
+    command: command,
     url: 'http://localhost:5000',
     reuseExistingServer: !isCI,
-    stdout: 'pipe',
+    stdout: 'ignore',
     stderr: 'pipe',
-    timeout: 30000, // Increased timeout to 30 seconds for CI environments
   },
 
   timeout: 180000,
