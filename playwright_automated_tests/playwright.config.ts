@@ -56,7 +56,7 @@ export default defineConfig({
           : './venv/bin/pip install -r requirements.txt && ./venv/bin/python app.py')
       // Local command
       : isWindows
-        ? 'cd .. && powershell -Command ". .\/venv\/Scripts\/Activate.ps1; python app.py"'
+        ? 'cd .. && venv\/Scripts\/Activate.ps1; && python app.py'
         : 'cd .. && source venv/bin/activate && python app.py',
     url: 'http://localhost:5000',
     reuseExistingServer: !isCI,
