@@ -46,7 +46,7 @@ export default defineConfig({
   },
 
   webServer: {
-    command: isCI
+    command: process.env.CI
       // CI command: Create venv, install dependencies, and run app
       ? 'cd .. && python -m venv venv && ' + 
         (isWindows 
