@@ -52,8 +52,9 @@ export default defineConfig({
     command: command,
     url: 'http://localhost:5000',
     reuseExistingServer: false,
-    stdout: 'ignore',
+    stdout: 'pipe',
     stderr: 'pipe',
+    timeout: 60000
   },
 
   timeout: 180000,
