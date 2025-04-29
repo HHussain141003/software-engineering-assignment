@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 require('dotenv').config()
 import path from 'path';
 
-const isCI = !!process.env.CI;
+const isCI = process.env.CI;
 
 const command = isCI
   ? 'cd .. && python -m venv venv && venv\\Scripts\\activate.ps1 && python app.py'
@@ -51,7 +51,7 @@ export default defineConfig({
   webServer: {
     command: command,
     url: 'http://localhost:5000',
-    reuseExistingServer: !isCI,
+    reuseExistingServer: false,
     stdout: 'ignore',
     stderr: 'pipe',
   },
