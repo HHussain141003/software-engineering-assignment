@@ -51,12 +51,12 @@ export default defineConfig({
       ? 'cd .. && python -m venv venv && ' + 
         (isWindows 
           // Windows CI environment (Azure Pipelines)
-          ? 'venv\\Scripts\\pip.exe install -r requirements.txt && venv\\Scripts\\python.exe app.py'  
+          ? 'venv\/Scripts\/pip.exe install -r requirements.txt && venv\/Scripts\/python.exe app.py'  
           // Linux/macOS CI environment 
           : './venv/bin/pip install -r requirements.txt && ./venv/bin/python app.py')
       // Local command
       : isWindows
-        ? 'cd .. && powershell -Command ". .\\venv\\Scripts\\Activate.ps1; python app.py"'
+        ? 'cd .. && powershell -Command ". .\/venv\/Scripts\/Activate.ps1; python app.py"'
         : 'cd .. && source venv/bin/activate && python app.py',
     url: 'http://localhost:5000',
     reuseExistingServer: !isCI,
