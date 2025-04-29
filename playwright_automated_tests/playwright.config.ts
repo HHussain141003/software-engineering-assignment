@@ -1,5 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
 require('dotenv').config()
+import { platform } from 'os';
+
+const isWindows = platform() === 'win32';
+const isCI = !!process.env.CI;
+
 // console.log(process.env) // remove this after you've confirmed it is working
 /**
  * Read environment variables from file.
@@ -39,6 +44,25 @@ export default defineConfig({
     
     
   },
+
+  webServer: {
+    command: isCI
+      // CI command: Create venv and run app
+      ? 'cd .. && python -m venv venv && ' + 
+        (isWindows 
+          ? '.\\venv\\Scripts\\python.exe app.py'  
+          : './venv/bin/python app.py')
+      // Local command: Activate existing venv and run app
+      : isWindows
+        ? 'cd .. && powershell -Command ". .\\venv\\Scripts\\Activate.ps1; python app.py"'
+        : 'cd .. && source venv/bin/activate && python app.py',
+    url: 'http://localhost:5000',
+    reuseExistingServer: !isCI,
+    stdout: 'pipe', // Changed from 'ignore' to help with debugging
+    stderr: 'pipe',
+    timeout: 10000, // 10 seconds to start up
+  },
+
   timeout: 180000,
   expect: {timeout: 15000},
 
