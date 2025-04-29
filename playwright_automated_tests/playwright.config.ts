@@ -2,11 +2,11 @@ import { defineConfig, devices } from '@playwright/test';
 require('dotenv').config()
 import path from 'path';
 
-const isCI = process.env.CI;
+const isCI = !!process.env.CI;
 
 const command = isCI
-  ? 'cd .. && python -m venv venv && venv\\Scripts\\activate.ps1 && python app.py'
-  : 'cd .. && venv\\Scripts\\activate.ps1 && python app.py';
+  ? 'cd .. && python -m venv venv && venv\\Scripts\\pip.exe install -r requirements.txt && venv\\Scripts\\python.exe app.py'
+  : 'cd .. && venv\\Scripts\\python.exe app.py';
 
 // console.log(process.env) // remove this after you've confirmed it is working
 /**
