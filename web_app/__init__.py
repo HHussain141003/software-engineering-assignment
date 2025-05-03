@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from .functions import login_required
 from .view_individual_ticket import view_individual_ticket_bp
 from .admin import admin_bp
+from .forgot_details import forgot_details_bp
 load_dotenv
 
 secret_key = os.getenv("SECRET_KEY")
@@ -50,11 +51,11 @@ def initialize_app():
 
     @app.before_request
     def require_login():
-        public_routes = ["login.login", "static"]
-
-        if request.endpoint not in public_routes and 'user_id' not in session:
-            flash("You must be logged in to access this page.", "error")
-            return redirect(url_for('login.login'))
+        public_prefixes = ("login", "forgot_details", "static")
+        if request.endpoint:
+            if not request.endpoint.startswith(public_prefixes) and 'user_id' not in session:
+                flash("You must be logged in to access this page.", "error")
+                return redirect(url_for('login.login'))
         
     initialize_database()
     generate_user_data()
@@ -65,5 +66,6 @@ def initialize_app():
     app.register_blueprint(create_ticket_bp)
     app.register_blueprint(view_individual_ticket_bp)
     app.register_blueprint(admin_bp)
+    app.register_blueprint(forgot_details_bp)
 
     return app 
