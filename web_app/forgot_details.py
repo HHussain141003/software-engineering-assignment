@@ -51,6 +51,7 @@ def send_reset_email(recipient_email, username):
     If you did not request this, you can safely ignore this email.
 
     Thank you,
+    
     IT Support Team
     """
 
