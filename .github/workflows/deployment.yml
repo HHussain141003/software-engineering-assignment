@@ -34,7 +34,7 @@ jobs:
           set CI=true
           npx playwright test
 
-      - name: Trigger Render Deployment
-        env:
-            RENDER_DEPLOY_HOOK: ${{ env.RENDER_DEPLOY_HOOK }}
-        run: curl -X POST "$RENDER_DEPLOY_HOOK"
+      # - name: Trigger Render Deployment
+      #   env:
+      #       RENDER_DEPLOY_HOOK: ${{ vars.RENDER_DEPLOY_HOOK }}
+      #   run: curl -X POST $RENDER_DEPLOY_HOOK
