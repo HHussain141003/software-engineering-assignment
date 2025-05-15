@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, session
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session, get_flashed_messages
 from datetime import datetime
 from .database import get_db
 from werkzeug.security import generate_password_hash
@@ -77,7 +77,7 @@ def add_user():
         )
         db.commit()
 
-        flash("New user added successfully!", "success")
+        flash("New user added successfully!", "user_added")
         return redirect(url_for("admin_bp.add_user"))
 
     return render_template("add_user.html")

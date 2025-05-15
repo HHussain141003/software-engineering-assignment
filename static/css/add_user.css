@@ -29,7 +29,7 @@ h1 {
 
 /* Form group styling */
 .form-group {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
   text-align: left;
 }
 
@@ -38,7 +38,7 @@ label {
   font-weight: bold;
   color: #333;
   display: inline-block;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
   font-size: 1.1em;
 }
 
@@ -85,26 +85,8 @@ a:hover {
   color: #0056b3;
 }
 
-/* Flash message styling */
-#flash-messages {
-  width: 100%;
-  margin-bottom: 2em;
-  text-align: center;
-}
-
 .alert {
-  padding: 1em;
+  text-align: center;
+  color: red;
   margin-bottom: 1em;
-  border-radius: 0.5em;
-  font-size: 1.1em;
-}
-
-.alert-success {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.alert-danger {
-  background-color: #f8d7da;
-  color: #721c24;
 }

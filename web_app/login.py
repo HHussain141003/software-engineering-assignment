@@ -34,7 +34,6 @@ def login_user():
 
     session["user_id"] = user["id"]
     session["role"] = user["role"]
-    flash("Successfully logged in", "login_status")
     return redirect(url_for("home.home_screen"))
 
 @login_bp.route('/logout', methods=['POST'])
