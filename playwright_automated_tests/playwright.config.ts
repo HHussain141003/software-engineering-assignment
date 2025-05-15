@@ -42,7 +42,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
     video: 'retain-on-failure',
-    launchOptions: { slowMo: 1500},
+    launchOptions: { slowMo: 0},
     ignoreHTTPSErrors: true
     
     
@@ -57,7 +57,7 @@ export default defineConfig({
     timeout: 60000
   },
 
-  timeout: 180000,
+  timeout: 30000,
   expect: {timeout: 15000},
 
   /* Configure projects for major browsers */
