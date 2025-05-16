@@ -6,6 +6,7 @@ import smtplib
 import requests
 import os
 from dotenv import load_dotenv
+from itsdangerous import URLSafeTimedSerializer
 
 load_dotenv()
 
@@ -15,9 +16,14 @@ logger = logging.getLogger(__name__)
 
 forgot_details_bp = Blueprint("forgot_details", __name__, url_prefix='/forgot')
 
+def generate_reset_token(email):
+    secret_key = os.getenv("SECRET_KEY")
+    serializer = URLSafeTimedSerializer(secret_key)
+    return serializer.dumps(email, salt="reset-password")
+
 def get_user_by_username_or_email(user_input):
     db = get_db()
-    db.row_factory = sqlite3.Row  # This lets you access columns by name
+    db.row_factory = sqlite3.Row 
     cursor = db.cursor()
 
     query = '''
@@ -31,8 +37,10 @@ def get_user_by_username_or_email(user_input):
     return user  # Will be None if no user found
 
 def send_reset_email(recipient_email, username):
+    token = generate_reset_token(recipient_email)
+    reset_url = url_for("forgot_details.reset_password", token=token, _external=True)
     api_key = os.getenv("EMAIL_API_KEY")
-    sender_email = "hhussain141003@gmail.com"  # Must be verified in Brevo
+    sender_email = "hhussain141003@gmail.com" 
 
     url = "https://api.brevo.com/v3/smtp/email"
     headers = {
