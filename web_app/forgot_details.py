@@ -18,6 +18,8 @@ logger = logging.getLogger(__name__)
 
 forgot_details_bp = Blueprint("forgot_details", __name__, url_prefix='/forgot')
 
+used_reset_tokens = set()
+
 def generate_reset_token(email):
     secret_key = os.getenv("SECRET_KEY")
     serializer = URLSafeTimedSerializer(secret_key)
@@ -106,6 +108,10 @@ def reset_password(token):
     secret_key = os.getenv("SECRET_KEY")
     serializer = URLSafeTimedSerializer(secret_key)
 
+    if token in used_reset_tokens:
+        flash("This reset link has already been used.", "error")
+        return redirect(url_for("forgot_details.forgot_details_page"))
+
     try:
         email = serializer.loads(token, salt="reset-password", max_age=1800)  # 30 min
     except SignatureExpired:
@@ -127,6 +133,8 @@ def reset_password(token):
         db = get_db()
         db.execute("UPDATE users SET password = ? WHERE email = ?", (hashed_password, email))
         db.commit()
+
+        used_reset_tokens.add(token)
 
         flash("Your password has been updated successfully. Please log in.", "success")
         return redirect(url_for("login.login"))
