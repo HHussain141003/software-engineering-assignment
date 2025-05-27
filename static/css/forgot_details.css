@@ -1,0 +1,63 @@
+.forgot-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.forgot-form {
+  background-color: #ffffff;
+  padding: 3em 4em;
+  border-radius: 2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.forgot-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+
+.forgot-form input[type="text"],
+.forgot-form input[type="email"] {
+  width: 100%;
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+}
+
+.forgot-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 1em;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  width: 66%;
+  font-size: 1.25em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.forgot-form button:hover {
+  background-color: #0056b3;
+}
+
+.alert {
+  text-align: center;
+  color: red;
+  margin-bottom: 1em;
+}
+
+.alert-success {
+  color: green;
+}
+
+.alert-error {
+  color: red;
+}

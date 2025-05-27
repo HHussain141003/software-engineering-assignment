@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 
+// Date and Time in the format DD/MM/YYYY, HH:MM:SS (e.g. 15/05/2024, 06:58:39)
 function current_date() {
   var date1 = new Date();
   var formattedDate = new Intl.DateTimeFormat("en-GB", {
