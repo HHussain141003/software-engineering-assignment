@@ -110,26 +110,27 @@ def reset_password(token):
 
     if token in used_reset_tokens:
         flash("This reset link has already been used.", "error")
-        return redirect(url_for("forgot_details.forgot_details_page"))
+        return render_template("reset_password.html", form_enabled=False)
 
     try:
-        email = serializer.loads(token, salt="reset-password", max_age=1800)  # 30 min
+        email = serializer.loads(token, salt="reset-password", max_age=1800)  # 30 minutes expiration
     except SignatureExpired:
         flash("The password reset link has expired.", "error")
-        return redirect(url_for("forgot_details.forgot_details_page"))
+        return render_template("reset_password.html", form_enabled=False)
     except BadSignature:
         flash("Invalid or tampered reset link.", "error")
-        return redirect(url_for("forgot_details.forgot_details_page"))
+        return render_template("reset_password.html", form_enabled=False)
 
     if request.method == "POST":
         new_password = request.form.get("new_password")
 
         if not is_strong_password(new_password):
             flash("Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character.", "error")
-            return render_template("reset_password.html", token=token)
+            # Re-render the form so the user can try again.
+            return render_template("reset_password.html", token=token, form_enabled=True)
 
         hashed_password = generate_password_hash(new_password)
-
+        
         db = get_db()
         db.execute("UPDATE users SET password = ? WHERE email = ?", (hashed_password, email))
         db.commit()
@@ -139,4 +140,4 @@ def reset_password(token):
         flash("Your password has been updated successfully. Please log in.", "success")
         return redirect(url_for("login.login"))
 
-    return render_template("reset_password.html", token=token)
+    return render_template("reset_password.html", token=token, form_enabled=True)
