@@ -7,6 +7,9 @@
   - [Annotated Screenshots](#annotated-screenshots)
 - [Running the Application](#running-the-application)
 - [Testing the Application](#testing-the-application)
+  - [Test Strategy](#test-strategy)
+  - [What is being Tested](#what-is-being-tested)
+  - [Running the Tests](#running-the-tests)
 
 # Introduction
 
@@ -68,13 +71,9 @@
 
    - Integrations with third party systems.
 
-   - Real-Time notifications (e.g. Email or Message alerts).
-
    - Advanced analytics or reporting tools for ticket trends and patterns.
 
 5. **Assumptions:**
-
-   - The system will be run locally, all the code is hosted in this repository.
 
    - Users will have access to the internet and a browser to use the system.
 
@@ -119,6 +118,12 @@ This section contains screenshots and details how to navigate through the applic
 8. The `Add a new user` button allows an administrator to add a new user to the user table allowing them to access the application.
    ![Add-User](./documentation/9.add-user.png)
 
+9. The `Forgot password?` link allows the user to enter their email and reset their password if an account exists.
+   ![Forgot-Password](./documentation/10.forgot-password.png)
+
+10. If the `Email` or `Username` exists in the database you will receive an email with a link to reset your password.
+    ![Reset-Password](./documentation/11.reset-password.png)
+
 # Running the application
 
 1. Create a virtual environment: `python -m venv venv`
@@ -133,35 +138,49 @@ This section contains screenshots and details how to navigate through the applic
 
 6. The default administrator account's details are:
 
-```
-username: admin
-password: admin123
+```js
+username: admin;
+password: admin123;
 ```
 
 # Testing the Application
 
-This project contains all the functional testing performed, documented in the `tests.xlsx` file. The tests cover all the key features of the application:
+## Test Strategy
 
-1. **User Login:** Valid and invalid login attempts as well as missing inputs.
+This project uses a **Black-Box End-to-End (E2E) Testing Strategy** implemented with **[Playwright](https://playwright.dev/)**.
 
-2. **Ticket Management:** Creating, updating, and validating tickets in different scenarios.
+E2E tests simulate real user interactions with the web application to ensure that critical user journeys behave as expected, from login to ticket management and logout.
 
-3. **Role-Based Permissions:** Tests covering different actions that both basic users and administrators should perform.
+This type of testing ensures:
 
-4. **Comments:** Adding comments and handling any missing inputs adequately.
+- The application behaves correctly from the user's perspective.
+- All integrated components (frontend, backend, database) work together.
+- The UI responds correctly to inputs, actions, and expected flows.
 
-## Why unit tests were not included
+End-to-End tests were chosen to validate the **entire flow** of the application because:
 
-Due to the small scale and scope of the application creating unit tests was not deemed necessary due to the following factors:
+- The system relies heavily on user roles (admin and users).
+- It includes form submissions, navigation, flash messages, and database updates.
+- It's critical to ensure routing and Role-Based Access (RBAC) works correctly.
 
-1. **Development Time:** The straightforward nature of the application made manual testing sufficient within the given timeframe.
+## What is being Tested
 
-2. **Low Complexity:** The application's core logic is simple, without intricate functions requiring unit test isolation.
+The automated tests simulate and verify the following scenarios:
 
-3. **Small Scope:** This project offers a limited set of features, which can all be easily tested manually.
+- **Login** with valid credentials
+- **Viewing tickets** as an admin or user
+- **Creating a new ticket**
+- **Editing a ticket’s status and description**
+- **Adding comments to a ticket**
+- **Adding a new user (admin only)**
+- **Logging out**
 
-## Testing Approach
+These tests run in the GitHub Workflow, a Virtual Environment and a new Database is created for each run to avoid conflicts or duplication.
 
-The functional testing performed includes positive and negative scenarios to ensure the application performs as expected under various different circumstances. The test outcomes were documented and the test cases passed successfully.
+## Running the Tests
 
-If this project were to be expanded upon in future iterations then unit testing could be implemented with frameworks such as `pytest` or `unittest` to enhance development time reducing the need for manual testing and following best practices.
+1. Open the terminal and enter: `cd playwright_automated_tests`
+2. Run `npm install`
+3. Run `npx playwright install`
+4. Run the tests by: `npx playwright test`
+5. The results are displayed in the terminal, in the `./playwright_automated_tests/summary.json`, and can be seen by entering the following command in the terminal: `npx playwright show-report`
