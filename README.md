@@ -7,6 +7,9 @@
   - [Annotated Screenshots](#annotated-screenshots)
 - [Running the Application](#running-the-application)
 - [Testing the Application](#testing-the-application)
+  - [Test Strategy](#test-strategy)
+  - [What is being Tested](#what-is-being-tested)
+  - [Running the Tests](#running-the-tests)
 
 # Introduction
 
@@ -158,7 +161,7 @@ End-to-End tests were chosen to validate the **entire flow** of the application 
 
 - The system relies heavily on user roles (admin and users).
 - It includes form submissions, navigation, flash messages, and database updates.
-- It's critical to ensure routing and Role-Based Access (RBAC) works correctly in.
+- It's critical to ensure routing and Role-Based Access (RBAC) works correctly.
 
 ## What is being Tested
 
@@ -169,12 +172,12 @@ The automated tests simulate and verify the following scenarios:
 - **Creating a new ticket**
 - **Editing a ticket’s status and description**
 - **Adding comments to a ticket**
-- **Adding a new user (admin-only)**
+- **Adding a new user (admin only)**
 - **Logging out**
 
 These tests run in the GitHub Workflow, a Virtual Environment and a new Database is created for each run to avoid conflicts or duplication.
 
-## Running the tests
+## Running the Tests
 
 1. Open the terminal and enter: `cd playwright_automated_tests`
 2. Run `npm install`
