@@ -13,7 +13,11 @@ def view_ticket(ticket_id):
     ticket = db.execute('SELECT * FROM tickets WHERE id = ?', (ticket_id,)).fetchone()
 
     if not ticket:
-        flash('Ticket not found or you do not have permission to view it!', 'error')
+        flash('Ticket not found!', 'error')
+        return redirect(url_for('view_tickets.view_tickets'))
+
+    if role != 'admin' and ticket['user_id'] != user_id:
+        flash('You do not have permission to view this ticket.', 'error')
         return redirect(url_for('view_tickets.view_tickets'))
 
     comments = db.execute(
