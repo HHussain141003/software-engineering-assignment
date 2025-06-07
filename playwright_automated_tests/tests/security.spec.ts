@@ -21,13 +21,13 @@ test('A01:2021 - Broken Access Control', async ({ page }) => {
 });
 
 // This test tries to exploit the Username input by entering an SQL Statement, however it does not work as all the queries in the application are parameterised.
-// test('A03:2021 - Injection', async ({ page }) => {
-//   await page.goto('http://127.0.0.1:5000/');
-//   await page.getByRole('textbox', { name: 'Username:' }).click();
-//   await page.getByRole('textbox', { name: 'Username:' }).fill("admin' OR '1'='1");
-//   await page.getByRole('textbox', { name: 'Password:' }).click();
-//   await page.getByRole('textbox', { name: 'Password:' }).fill("wrongpassword");
-//   await page.getByRole('button', { name: 'Login' }).click();
-//   await expect(page).toHaveURL("http://127.0.0.1:5000/");
-//   await expect(page.locator('#flash-messages')).toContainText('Invalid username or password, please try again.');
-// });
+test('A03:2021 - Injection', async ({ page }) => {
+  await page.goto('http://127.0.0.1:5000/');
+  await page.getByRole('textbox', { name: 'Username:' }).click();
+  await page.getByRole('textbox', { name: 'Username:' }).fill("admin' OR '1'='1");
+  await page.getByRole('textbox', { name: 'Password:' }).click();
+  await page.getByRole('textbox', { name: 'Password:' }).fill("wrongpassword");
+  await page.getByRole('button', { name: 'Login' }).click();
+  await expect(page).toHaveURL("http://127.0.0.1:5000/");
+  await expect(page.locator('#flash-messages')).toContainText('Invalid username or password, please try again.');
+});
