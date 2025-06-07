@@ -19,7 +19,7 @@ function current_date() {
 let recordID = `Playwright automated test run at ${current_date()}`
 
 test.beforeEach(async ({ page }, testInfo) => {
-  console.log(`Running test: ${testInfo.title}`);
+  console.log(`Running Test: ${testInfo.title}`);
   await page.goto('http://127.0.0.1:5000/');
   await page.getByRole('textbox', { name: 'Username:' }).click();
   await page.getByRole('textbox', { name: 'Username:' }).fill('admin');
@@ -29,7 +29,7 @@ test.beforeEach(async ({ page }, testInfo) => {
   });
   
 test.afterEach("Status check", async ({ page }, testInfo) => {
-console.log(`Finished ${testInfo.title} with status ${testInfo.status}`);
+console.log(`Finished Test: ${testInfo.title} with status ${testInfo.status}`);
 });
 
 test('01 - View all tickets', async ({ page }) => {
