@@ -126,7 +126,6 @@ def reset_password(token):
 
         if not is_strong_password(new_password):
             flash("Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character.", "error")
-            # Re-render the form so the user can try again.
             return render_template("reset_password.html", token=token, form_enabled=True)
 
         hashed_password = generate_password_hash(new_password)
