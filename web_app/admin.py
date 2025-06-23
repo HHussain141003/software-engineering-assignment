@@ -3,6 +3,7 @@ from datetime import datetime
 from .database import get_db
 from werkzeug.security import generate_password_hash
 from urllib.parse import unquote
+import re
 
 admin_bp = Blueprint('admin_bp', __name__)
 
@@ -54,6 +55,11 @@ def edit_ticket(ticket_id):
     # Pass the ticket data and prev_page to the template
     return render_template('edit_ticket.html', ticket=ticket, prev_page=prev_page)
 
+def is_strong_password(password):
+    # At least 8 characters, 1 lowercase, 1 uppercase, 1 digit, 1 special character
+    pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+    return re.match(pattern, password)
+
 @admin_bp.route("/add_user", methods=["GET", "POST"])
 def add_user():
     if request.method == "POST":
@@ -61,6 +67,10 @@ def add_user():
         email = request.form["email"]
         password = request.form["password"]
         role = request.form["role"]
+
+        if not is_strong_password(password):
+            flash("Password must be at least 8 characters long and include 1 lowercase, 1 uppercase, 1 digit, and 1 special character.", "error")
+            return redirect(url_for("admin_bp.add_user"))
 
         db = get_db()
         existing_user = db.execute(
